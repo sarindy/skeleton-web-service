@@ -1,18 +1,16 @@
 package org.example.ws.model;
 
-import java.math.BigInteger;
-
 public class Greeting {
-	private BigInteger id;
+	private Long id;
 	
 	private String text;
 
-	public BigInteger getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
-		this.id = id;
+	public void setId(Long nextId) {
+		this.id = nextId;
 	}
 
 	public String getText() {
@@ -28,7 +26,7 @@ public class Greeting {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Greeting(BigInteger id, String text) {
+	public Greeting(Long id, String text) {
 		super();
 		this.id = id;
 		this.text = text;
