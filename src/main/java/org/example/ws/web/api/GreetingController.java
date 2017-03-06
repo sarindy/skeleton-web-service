@@ -1,6 +1,5 @@
 package org.example.ws.web.api;
 
-import java.math.BigInteger;
 import java.util.Collection;
 
 import org.example.ws.model.Greeting;
@@ -94,7 +93,7 @@ public class GreetingController {
 //
 //	// ***********************************
 
-	@RequestMapping(value = "/api/greetings", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/api/greetings", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Greeting>> GetGreeting() {
 		/**
 		 * This ResponseEntity here is tell spring to convert the response into
@@ -106,8 +105,8 @@ public class GreetingController {
 		return new ResponseEntity<Collection<Greeting>>(greetings, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/api/greetings/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Greeting> GetGreetingById(@PathVariable("id") BigInteger id) {
+	@RequestMapping(value = "/api/greetings/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Greeting> GetGreetingById(@PathVariable("id") Long id) {
 		//Greeting greeting = greetingMap.get(id);
 		Greeting greeting = greetingService.findOne(id);
 		if (greeting == null) {
@@ -116,14 +115,14 @@ public class GreetingController {
 		return new ResponseEntity<Greeting>(greeting, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/api/greetings/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/api/greetings/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Greeting> addGreeting(@RequestBody Greeting greeting) {
 		Greeting saveGreeting = greetingService.create(greeting);
 		return new ResponseEntity<Greeting>(saveGreeting, HttpStatus.CREATED);
 
 	}
 
-	@RequestMapping(value = "/api/greetings/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/api/greetings/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Greeting> updateGreeting(@RequestBody Greeting greeting) {
 		Greeting updateGreeting = greetingService.update(greeting);
 		if (updateGreeting == null) {
