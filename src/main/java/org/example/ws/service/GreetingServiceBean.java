@@ -13,6 +13,7 @@ public class GreetingServiceBean implements GreetingService {
 	@Autowired
 	private GreetingRepository greetingRepository;
 
+	
 	@Override
 	public Collection<Greeting> findAll() {
 		Collection<Greeting> greeting = greetingRepository.findAll();
@@ -53,5 +54,6 @@ public class GreetingServiceBean implements GreetingService {
 	public void delete(Long id) {
 		greetingRepository.delete(id);
 	}
+	
 
 }

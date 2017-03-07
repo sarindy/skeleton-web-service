@@ -16,33 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class GreetingController {
-
+	
 	@Autowired
 	private GreetingService greetingService;
-
+	
 	@RequestMapping(value = "/api/greetings", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Greeting>> GetGreetings() {
 		
 		Collection<Greeting> greetings = greetingService.findAll();
 		return new ResponseEntity<Collection<Greeting>>(greetings, HttpStatus.OK);
 	}
-
+	
 	@RequestMapping(value = "/api/greetings/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Greeting> getGreeting(@PathVariable("id") Long id) {
-
+		
 		Greeting greeting = greetingService.findOne(id);
 		if (greeting == null) {
 			return new ResponseEntity<Greeting>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Greeting>(greeting, HttpStatus.OK);
 	}
-
+	
 	@RequestMapping(value = "/api/greetings", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Greeting> addGreeting(@RequestBody Greeting greeting) {
 		Greeting saveGreeting = greetingService.create(greeting);
 		return new ResponseEntity<Greeting>(saveGreeting, HttpStatus.CREATED);
 	}
-
+	
 	@RequestMapping(value = "/api/greetings/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Greeting> updateGreeting(@RequestBody Greeting greeting) {
 		Greeting updateGreeting = greetingService.update(greeting);
@@ -51,9 +51,9 @@ public class GreetingController {
 		}
 		return new ResponseEntity<Greeting>(updateGreeting, HttpStatus.OK);
 	}
-
+	
 	@RequestMapping(value = "/api/greetings/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Greeting> deleteGreeting(@PathVariable("id") Long id, @RequestBody Greeting greeting) {
+	public ResponseEntity<Greeting> deleteGreeting(@PathVariable("id") Long id) {
 		greetingService.delete(id);
 		return new ResponseEntity<Greeting>(HttpStatus.NO_CONTENT);
 	}
